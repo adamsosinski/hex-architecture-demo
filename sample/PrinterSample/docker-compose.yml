@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  fancy-printer:
+    container_name: fancy-printer
+    image: fancy-printer
+    build:
+      context: ../../
+      dockerfile: ./sample/PrinterSample/Dockerfile
+    depends_on:
+      - rabbitmq
+    stdin_open: true
+    tty: true
+
+  rabbitmq:
+    container_name: fancy-printer-rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
